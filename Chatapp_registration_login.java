@@ -34,9 +34,37 @@ public class Chatapp_registration_login {
         String loginPass = inputuser.nextLine();
         
         System.out.println(user.returnLoginStatus(loginUser, loginPass));
-    }else {
+     if (user.loginUser(loginUser, loginPass)) {
+         int choice = 0;
+         while (choice != 3) {
+             System.out.println("\n===MESSAGE MENU===");
+             System.out.println("1. Send message");
+             System.out.println("2. Show sent message");
+             System.out.println("3. Quit");
+             System.out.print("Enter choice: ");
+             choice = Integer.parseInt(inputuser.nextLine());
+             
+             if (choice == 1) {
+                 System.out.print("Enter recipients cellphone number: ");
+                 String recipientsCell = inputuser.nextLine();
+                 System.out.print("Enter message: ");
+                 String messageText = inputuser.nextLine();
+                 Message msg = new Message(recipientsCell, messageText);
+                 System.out.println(msg.sentMessage());
+             
+             }else if (choice == 2) {
+                 Message tempMsg = new Message("", "");
+                 tempMsg.printMessages();
+                 
+             }else if (choice == 3) {
+                 System.out.println("Total messages sent" + new Message("","").returnTotalMessages());
+                 System.out.println("Goodbye!");
+             }
+         }
+     }
+     }else {
             System.out.println("please ensure that your registration was successfull first");
 }
-    
-     
+ 
+   
 }}
